@@ -1,0 +1,50 @@
+@media (hover: none) {
+    
+    html, body {
+        margin: 0; height: 100%; overflow: hidden
+    }
+
+    html {
+        width: 100vw;
+    }
+
+    main {
+        margin-top: 25vh !important;
+    }
+
+    .memeSlider__circles {
+        flex-direction: column !important;
+    }
+
+    .memeSlider__circles__butnsContainer {
+        margin-left: auto; margin-right: auto;
+        margin-bottom: 1vw;
+        width: 15vh !important;
+    }
+
+    .memeSlider__circles__text {
+        border-right-width: 20.2vw !important;
+    }
+
+    .memeSlider__carusel_border {
+        align-items: center;
+    }
+
+    .memeSlider__img {
+        height: 29vw !important;
+    }
+
+    p {
+        padding-top: 0.5vw; padding-bottom: 0.5vw;
+        font-size: 2vh !important;
+    }
+
+    .memeSlider__circles__text {
+        padding-left: 0.2vw;
+    }
+
+    .memeSlider__circle {
+        border-width: 0.3vh !important;
+        width: 2vh !important; height: 2vh !important;
+    }
+}
