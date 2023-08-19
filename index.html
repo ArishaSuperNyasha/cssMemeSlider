@@ -19,6 +19,10 @@
             margin: 0;
         }
 
+        main {
+            margin-top: 12vh; 
+        }
+
 
         .memeSlider {
             display: flex; flex-direction: column-reverse;
@@ -43,7 +47,7 @@
         .memeSlider__carusel_border {
             display: flex; justify-content: center;
             height: 30vw; width: 50vw;
-            outline: 10px solid var(--my-greyBlack);
+            outline: 1vw solid var(--my-greyBlack);
             outline-offset: -2px;
             border-radius: 1vw;
         }
@@ -61,7 +65,8 @@
         .memeSlider__circle {
             width: 1.5vw; height: 1.5vw;
             border: 2px solid var(--my-blue); background-color: var(--my-blue);
-            border-radius: 25px;
+            border-radius: 1.5vw;
+            position: relative;
         }
 
         .memeSlider__circles__text {
@@ -99,6 +104,14 @@
             filter: brightness(10);
         }
 
+        .memeSlider__circle:after {
+            content: "";
+            position: absolute;
+            top: -1vw; left: -1vw; 
+            width: 3.5vw;
+            height: 3.5vw;
+        }
+
 
         .memeSlider__circles:has([data-index="0"]:focus) + .memeSlider__carusel .memeSlider__carusel_border [data-index="0"]{
             padding-left: 150vw;
@@ -107,7 +120,7 @@
             padding-left: 50vw;
         }
         .memeSlider__circles:has([data-index="2"]:focus) + .memeSlider__carusel .memeSlider__carusel_border [data-index="3"]{
-            padding-right: 200vw;;
+            padding-right: 200vw;
         }
         .memeSlider__circles:has([data-index="3"]:focus) + .memeSlider__carusel .memeSlider__carusel_border [data-index="3"]{
             padding-right: 300vw;
