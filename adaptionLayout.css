@@ -1,4 +1,4 @@
-@media (hover: none) {
+@media (hover: none) or (max-width: 1023px){
     
     html, body {
         margin: 0; height: 100%; overflow: hidden
@@ -46,5 +46,6 @@
     .memeSlider__circle {
         border-width: 0.3vh !important;
         width: 2vh !important; height: 2vh !important;
+        border-radius: 2vh !important;
     }
 }
