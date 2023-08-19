@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <title></title>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes">
-    <link rel="stylesheet" href="style.css">
     <style>
         :root {
             --my-blue: rgb(72, 138, 199);
+            --my-greyBlack: rgb(34, 34, 34);
         }
 
         html {
             overflow: hidden;
-            background-color: rgb(34, 34, 34);
+            background-color: var(--my-greyBlack);
         }
 
         body {
@@ -25,15 +25,27 @@
         }
 
         .memeSlider__circles {
-            display: flex; justify-content: center;
+            display: flex; justify-content: space-between;
+            width: 50vw;
+            border-left: 25vw solid var(--my-greyBlack); border-right: 28vw solid var(--my-greyBlack);
+            flex-direction: row-reverse;
+            margin-top: 1vw;
         }
 
 
         .memeSlider__carusel {
-            height: 500px; width: 50vw;
-            border-left: 25vw solid rgb(34, 34, 34); border-right: 25vw solid rgb(34, 34, 34);
+            height: max-content; width: 50vw;
+            border-left: 25vw solid var(--my-greyBlack); border-right: 28vw solid var(--my-greyBlack);
             background-color: rgba(0, 0, 0, 0);
-            display: flex; justify-content: center
+            display: flex; justify-content: center;
+        }
+
+        .memeSlider__carusel_border {
+            display: flex; justify-content: center;
+            height: 30vw; width: 50vw;
+            outline: 10px solid var(--my-greyBlack);
+            outline-offset: -2px;
+            border-radius: 1vw;
         }
 
         .memeSlider__carusel [data-index="0"] {
@@ -41,37 +53,78 @@
         }
 
         .memeSlider__img {
-            width: 50vw; height: 500px; width: 50vw;
+            width: 50vw; height: 30vw; min-width: 50vw;
             z-index: -1;
             transition: 0.4s;
         }
 
         .memeSlider__circle {
-            width: 25px; height: 25px;
-            border: 3px solid var(--my-blue); background-color: var(--my-blue);
+            width: 1.5vw; height: 1.5vw;
+            border: 2px solid var(--my-blue); background-color: var(--my-blue);
             border-radius: 25px;
+        }
+
+        .memeSlider__circles__text {
+            display: flex; flex-direction: row;
+            color: white;
+            max-width: 30vw; border-right: 10vw solid var(--my-greyBlack);
+            justify-content: center;
+        }
+
+        .memeSlider__circles__text [data-index="0"] {
+            margin-left: 94vw;
+        }
+
+        .memeSlider__circles__butnsContainer {
+            height: auto; width: 10vw;
+            background-color: var(--my-greyBlack);
+            flex-grow: 1;
+            display: flex; justify-content: space-between;
+        }
+
+        .memeSlider__circles__text p {
+            font-size: 1.5vw;
+            min-width: 31vw; width: max-content;
+            z-index: -1;
+            margin: 0;
+            transition: 0.4s;
         }
 
 
         .memeSlider__circle:focus {
-            border: 3px solid var(--my-blue); background-color: rgba(0, 0, 0, 0);
+            border: 2px solid var(--my-blue); background-color: rgba(0, 0, 0, 0);
         }
 
         .memeSlider__circle:hover {
             filter: brightness(10);
         }
 
-        .memeSlider__circles:has(> [data-index="0"]:focus) + .memeSlider__carusel [data-index="0"]{
+
+        .memeSlider__circles:has([data-index="0"]:focus) + .memeSlider__carusel .memeSlider__carusel_border [data-index="0"]{
             padding-left: 150vw;
         }
-        .memeSlider__circles:has(> [data-index="1"]:focus) + .memeSlider__carusel [data-index="0"]{
+        .memeSlider__circles:has([data-index="1"]:focus) + .memeSlider__carusel .memeSlider__carusel_border [data-index="0"]{
             padding-left: 50vw;
         }
-        .memeSlider__circles:has(> [data-index="2"]:focus) + .memeSlider__carusel [data-index="3"]{
+        .memeSlider__circles:has([data-index="2"]:focus) + .memeSlider__carusel .memeSlider__carusel_border [data-index="3"]{
             padding-right: 200vw;;
         }
-        .memeSlider__circles:has(> [data-index="3"]:focus) + .memeSlider__carusel [data-index="3"]{
+        .memeSlider__circles:has([data-index="3"]:focus) + .memeSlider__carusel .memeSlider__carusel_border [data-index="3"]{
             padding-right: 300vw;
+        }
+
+
+        .memeSlider__circles__butnsContainer:has([data-index="0"]:focus) + .memeSlider__circles__text [data-index="0"]{
+            padding-left: 0vw;
+        }
+        .memeSlider__circles__butnsContainer:has([data-index="1"]:focus) + .memeSlider__circles__text [data-index="3"]{
+            padding-right: 62vw;
+        }
+        .memeSlider__circles__butnsContainer:has([data-index="2"]:focus) + .memeSlider__circles__text [data-index="3"]{
+            padding-right: 124vw;
+        }
+        .memeSlider__circles__butnsContainer:has([data-index="3"]:focus) + .memeSlider__circles__text [data-index="3"]{
+            padding-right: 186vw;
         }
     </style>
 </head>
@@ -79,16 +132,26 @@
     <main>
         <div class="memeSlider">
             <div class="memeSlider__circles">
-                <button class="memeSlider__circle" data-index = '0'></button>
-                <button class="memeSlider__circle" data-index = '1'></button>
-                <button class="memeSlider__circle" data-index = '2'></button>
-                <button class="memeSlider__circle" data-index = '3'></button>
+                <div class="memeSlider__circles__butnsContainer">
+                    <button class="memeSlider__circle" data-index = '0'></button>
+                    <button class="memeSlider__circle" data-index = '1'></button>
+                    <button class="memeSlider__circle" data-index = '2'></button>
+                    <button class="memeSlider__circle" data-index = '3'></button>
+                </div>
+                <div class="memeSlider__circles__text">
+                    <p data-index = '0'>НЕ ЗЛИСЬ А ТО УКУШУ</p>
+                    <p data-index = '1'>МИД РФ выражает глубокую ОЗАБОЧЕННОСТЬ</p>
+                    <p data-index = '2'>НЕ ТЯНИ КОТА ЗА ЧТО ПОПАЛО ПОГАСИ ДОЛГ!</p>
+                    <p data-index = '3'>Дякую за увагу! Тетяно Миколайивно,<br> поставте максимум</p>
+                </div>
             </div>
             <div class="memeSlider__carusel">
-                <img class="memeSlider__img" data-index = '0' src="kit1.jpg" alt="">
-                <img class="memeSlider__img" data-index = '1' src="kit2.jpg" alt="">
-                <img class="memeSlider__img" data-index = '2' src="kit3.jpg" alt="">
-                <img class="memeSlider__img" data-index = '3' src="kit4.jpg" alt="">
+                <div class="memeSlider__carusel_border">
+                    <img class="memeSlider__img" data-index = '0' src="kit1.jpg" alt="">
+                    <img class="memeSlider__img" data-index = '1' src="kit2.jpg" alt="">
+                    <img class="memeSlider__img" data-index = '2' src="kit3.jpg" alt="">
+                    <img class="memeSlider__img" data-index = '3' src="kit4.jpg" alt="">
+                </div>
             </div>
         </div>
     </main>
